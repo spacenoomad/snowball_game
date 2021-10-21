@@ -1,0 +1,79 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://White-square.jpg" type="Texture" id=1]
+[ext_resource path="res://Scripts/player_controller.gd" type="Script" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 39, 108 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 21.7687, 22.3623 )
+
+[node name="Player" type="KinematicBody2D"]
+scale = Vector2( 0.304894, 0.304894 )
+z_index = 6
+script = ExtResource( 2 )
+_speed = 10
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+modulate = Color( 0.12549, 0, 1, 1 )
+scale = Vector2( 0.156522, 0.432432 )
+texture = ExtResource( 1 )
+
+[node name="Buttons" type="Node2D" parent="."]
+
+[node name="Button_1" type="Area2D" parent="Buttons"]
+position = Vector2( 325, 0 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Buttons/Button_1"]
+shape = SubResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="Buttons/Button_1"]
+self_modulate = Color( 0.0784314, 0, 1, 1 )
+scale = Vector2( 0.0975361, 0.0975361 )
+texture = ExtResource( 1 )
+
+[node name="Button_2" type="Area2D" parent="Buttons"]
+position = Vector2( 0, 324.526 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Buttons/Button_2"]
+shape = SubResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="Buttons/Button_2"]
+self_modulate = Color( 0.0784314, 0, 1, 1 )
+scale = Vector2( 0.0975361, 0.0975361 )
+texture = ExtResource( 1 )
+
+[node name="Button_3" type="Area2D" parent="Buttons"]
+position = Vector2( 0, -324.526 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Buttons/Button_3"]
+shape = SubResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="Buttons/Button_3"]
+self_modulate = Color( 0.0784314, 0, 1, 1 )
+scale = Vector2( 0.0975361, 0.0975361 )
+texture = ExtResource( 1 )
+
+[node name="Button_4" type="Area2D" parent="Buttons"]
+position = Vector2( -325, 0 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Buttons/Button_4"]
+shape = SubResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="Buttons/Button_4"]
+self_modulate = Color( 0.0784314, 0, 1, 1 )
+scale = Vector2( 0.0975361, 0.0975361 )
+texture = ExtResource( 1 )
+
+[connection signal="mouse_entered" from="Buttons/Button_1" to="." method="_on_Button_1_mouse_entered"]
+[connection signal="mouse_exited" from="Buttons/Button_1" to="." method="_on_Button_1_mouse_exited"]
+[connection signal="mouse_entered" from="Buttons/Button_2" to="." method="_on_Button_2_mouse_entered"]
+[connection signal="mouse_exited" from="Buttons/Button_2" to="." method="_on_Button_2_mouse_exited"]
+[connection signal="mouse_entered" from="Buttons/Button_3" to="." method="_on_Button_3_mouse_entered"]
+[connection signal="mouse_exited" from="Buttons/Button_3" to="." method="_on_Button_3_mouse_exited"]
+[connection signal="mouse_entered" from="Buttons/Button_4" to="." method="_on_Button_4_mouse_entered"]
+[connection signal="mouse_exited" from="Buttons/Button_4" to="." method="_on_Button_4_mouse_exited"]

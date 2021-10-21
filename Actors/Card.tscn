@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://White-square.jpg" type="Texture" id=1]
+[ext_resource path="res://Scripts/card_press_script.gd" type="Script" id=2]
+
+[node name="Card" type="TextureButton"]
+margin_right = 12.0
+margin_bottom = 20.0
+rect_scale = Vector2( 0.0363192, 0.0640422 )
+texture_normal = ExtResource( 1 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+self_modulate = Color( 0, 0, 0, 1 )
+margin_left = 97.0256
+margin_top = 218.022
+margin_right = 184.026
+margin_bottom = 232.022
+rect_scale = Vector2( 3.15462, 1.47963 )
+text = "make 1 move"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="button_down" from="." to="." method="_on_Card_button_down"]
