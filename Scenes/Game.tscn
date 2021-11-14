@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Actors/Box.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Actors/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scripts/add_cards.gd" type="Script" id=3]
+[ext_resource path="res://Actors/Enemy.tscn" type="PackedScene" id=4]
 
 [node name="Game" type="Node"]
 
@@ -192,13 +193,52 @@ __meta__ = {
 
 [node name="Button" type="Button" parent="Cards"]
 margin_left = -200.82
-margin_top = 416.04
+margin_top = 374.574
 margin_right = -146.82
-margin_bottom = 436.04
+margin_bottom = 394.574
 rect_scale = Vector2( 1.81276, 1.3877 )
 text = "Draw"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Label" type="Label" parent="."]
+margin_left = 711.664
+margin_top = 532.786
+margin_right = 822.664
+margin_bottom = 573.786
+rect_scale = Vector2( 1.32, 1.36 )
+text = "Lifespan left:"
+align = 1
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MovesCountText" type="Label" parent="."]
+anchor_top = -1.01725e-07
+anchor_bottom = -1.01725e-07
+margin_left = 794.573
+margin_top = 531.726
+margin_right = 905.573
+margin_bottom = 572.726
+rect_scale = Vector2( 1.32, 1.36 )
+text = "10"
+align = 1
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Enemy" type="Node" parent="."]
+
+[node name="Card" parent="Enemy" instance=ExtResource( 4 )]
+margin_left = 235.542
+margin_top = 35.0883
+margin_right = 735.542
+margin_bottom = 535.088
+script = null
 
 [connection signal="button_down" from="Cards/Button" to="Cards/Cards_Holder" method="_on_Button_button_down"]

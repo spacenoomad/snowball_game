@@ -2,6 +2,7 @@ extends HBoxContainer
 
 onready var card = preload("res://Actors/Card.tscn")
 var amount_of_cards = 0
+#var moves_left = 10;
 
 enum drawing_cards_states {
 	NOTDRAWABLE
@@ -18,7 +19,9 @@ func generate_cards():
 	randomize()
 	amount_of_cards = random_int
 	while random_int > 0:
-		add_child(card.instance())
+		var new_card = card.instance()
+		add_child(new_card)
+		new_card.set_card_ability()
 		random_int -= 1
 
 func remove_one_card():

@@ -15,12 +15,13 @@ __meta__ = {
 
 [node name="Label" type="Label" parent="."]
 self_modulate = Color( 0, 0, 0, 1 )
-margin_left = 97.0256
-margin_top = 218.022
-margin_right = 184.026
-margin_bottom = 232.022
-rect_scale = Vector2( 3.15462, 1.47963 )
+margin_left = 1.75621
+margin_top = 218.861
+margin_right = 118.756
+margin_bottom = 269.861
+rect_scale = Vector2( 4.25596, 3.39599 )
 text = "make 1 move"
+align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }

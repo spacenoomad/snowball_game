@@ -1,6 +1,9 @@
 extends KinematicBody2D
 
+
+onready var counter = get_node("/root/Game/MovesCountText")
 export var _speed = 0
+var moves_left =10
 
 enum button_states {
 	HIDDEN,
@@ -28,6 +31,7 @@ func match_player_states():
 		
 		player_states.MOVING:
 			move_towards_target(target_position)
+			
 
 func match_button_states():
 	
@@ -43,11 +47,16 @@ func match_button_states():
 			if Input.is_action_pressed("left_click"):
 				change_player_state(player_states.MOVING)
 				change_button_state(button_states.HIDDEN)
+				
 
 func move_towards_target(local_target_position):
 	position = position.move_toward(local_target_position, _speed)
 	if local_target_position == position:
 		change_player_state(player_states.IDLE)
+		moves_left-=1;
+		print(moves_left)
+		counter.set_text(str(moves_left));
+	
 
 func change_player_state(target_state):
 	current_player_state = target_state
@@ -58,9 +67,12 @@ func change_button_state(target_state):
 func card_pressed():
 	change_button_state(button_states.NOTHOVER)
 
+
 func _on_Button_1_mouse_entered():
 	if current_button_state == button_states.NOTHOVER:
 		change_button_state(button_states.HOVER)
+
+		
 	target_position = get_child(2).get_child(0).global_position
 
 func _on_Button_1_mouse_exited():
@@ -72,6 +84,7 @@ func _on_Button_2_mouse_entered():
 	if current_button_state == button_states.NOTHOVER:
 		change_button_state(button_states.HOVER)
 	target_position = get_child(2).get_child(1).global_position
+	
 
 func _on_Button_2_mouse_exited():
 	if current_button_state == button_states.HOVER:
