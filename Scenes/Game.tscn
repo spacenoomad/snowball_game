@@ -1,9 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Actors/Box.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Actors/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scripts/add_cards.gd" type="Script" id=3]
-[ext_resource path="res://Actors/Enemy.tscn" type="PackedScene" id=4]
 
 [node name="Game" type="Node"]
 
@@ -11,6 +10,10 @@
 position = Vector2( 50.3868, 49.7234 )
 scale = Vector2( 0.309532, 0.309532 )
 _speed = 20
+
+[node name="bulletSpawner" type="Position2D" parent="Player"]
+position = Vector2( 0.216446, 2.35963 )
+scale = Vector2( 3.23068, 3.23068 )
 
 [node name="Board_Holder" type="Node2D" parent="."]
 scale = Vector2( 1.01521, 1.01521 )
@@ -231,14 +234,5 @@ uppercase = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="Enemy" type="Node" parent="."]
-
-[node name="Card" parent="Enemy" instance=ExtResource( 4 )]
-margin_left = 235.542
-margin_top = 35.0883
-margin_right = 735.542
-margin_bottom = 535.088
-script = null
 
 [connection signal="button_down" from="Cards/Button" to="Cards/Cards_Holder" method="_on_Button_button_down"]

@@ -1,9 +1,13 @@
 extends KinematicBody2D
 
-
+var bullet = preload("res://Actors/Bullet.tscn")
 onready var counter = get_node("/root/Game/MovesCountText")
 export var _speed = 0
+export var bullet_speed = 1000;
 var moves_left =10
+var has_attacked = false;
+var current_move_attack=false;
+onready var bullet_spawn_point = $bulletSpawner
 
 enum button_states {
 	HIDDEN,
@@ -13,10 +17,12 @@ enum button_states {
 
 enum player_states {
 	IDLE,
-	MOVING
+	MOVING, 
+	ATTACK
 }
 
 var target_position = Vector2()
+var bullet_rotation = null;
 var current_button_state = button_states.HIDDEN
 var current_player_state = player_states.IDLE
 
@@ -32,6 +38,9 @@ func match_player_states():
 		player_states.MOVING:
 			move_towards_target(target_position)
 			
+		player_states.ATTACK:
+			attack_towards_target(target_position, bullet_rotation)
+			
 
 func match_button_states():
 	
@@ -45,8 +54,20 @@ func match_button_states():
 		
 		button_states.HOVER:
 			if Input.is_action_pressed("left_click"):
-				change_player_state(player_states.MOVING)
-				change_button_state(button_states.HIDDEN)
+				if (current_move_attack): 
+					change_player_state(player_states.ATTACK)
+					change_button_state(button_states.HIDDEN)
+					current_move_attack=false;
+					has_attacked = false;
+					
+					
+					
+				else:
+					change_player_state(player_states.MOVING)
+					change_button_state(button_states.HIDDEN)
+					
+					
+					
 				
 
 func move_towards_target(local_target_position):
@@ -54,9 +75,39 @@ func move_towards_target(local_target_position):
 	if local_target_position == position:
 		change_player_state(player_states.IDLE)
 		moves_left-=1;
-		print(moves_left)
 		counter.set_text(str(moves_left));
+
+var bullet_instance;
+func attack_towards_target(local_target_position, bullet_rotation):
+	shoot(local_target_position, bullet_rotation);
+#	shoot in direction
+	change_player_state(player_states.IDLE)
+
+func shoot( target, dir):
+	if (!has_attacked):
+		has_attacked = true;
+		bullet_instance = bullet.instance()
+		bullet_instance.position = get_global_position();
+		bullet_instance.apply_impulse(Vector2(1,0), Vector2(500, 0).rotated(deg2rad(dir)));
+		get_tree().get_root().add_child(bullet_instance);
+		
+		
+		
+#	if (bullet_instance):
+##		bullet_instance.position = bullet_instance.position.move_toward(target, 30)
+#		print("attacking "+ str(direction)+" " + str(bullet_instance.position) + " "+ str(target));
+##		change_player_state(player_states.IDLE)
+#		test=true;
+		
 	
+#	if bullet_instance and target == bullet_instance.position:
+##		destroy() bullet_instance
+#		change_player_state(player_states.IDLE)
+#	bullet_instance.position = get_global_position();
+#	bullet_instance.apply_impulse(Vector2(), Vector2(bullet_speed, 0));
+#	var target = 
+#	var direction_to_mouse = bullet_instance.global_position
+#	print("shoot bullet "+dir)
 
 func change_player_state(target_state):
 	current_player_state = target_state
@@ -66,12 +117,19 @@ func change_button_state(target_state):
 
 func card_pressed():
 	change_button_state(button_states.NOTHOVER)
+	current_move_attack = false;
 
-
+func card_pressed_attack():
+	print("here?")
+	current_move_attack = true;
+	change_button_state(button_states.NOTHOVER)
+	
+	
+	
 func _on_Button_1_mouse_entered():
 	if current_button_state == button_states.NOTHOVER:
 		change_button_state(button_states.HOVER)
-
+	bullet_rotation = 0
 		
 	target_position = get_child(2).get_child(0).global_position
 
@@ -84,7 +142,7 @@ func _on_Button_2_mouse_entered():
 	if current_button_state == button_states.NOTHOVER:
 		change_button_state(button_states.HOVER)
 	target_position = get_child(2).get_child(1).global_position
-	
+	bullet_rotation = 90
 
 func _on_Button_2_mouse_exited():
 	if current_button_state == button_states.HOVER:
@@ -95,6 +153,7 @@ func _on_Button_3_mouse_entered():
 	if current_button_state == button_states.NOTHOVER:
 		change_button_state(button_states.HOVER)
 	target_position = get_child(2).get_child(2).global_position
+	bullet_rotation = 270
 
 func _on_Button_3_mouse_exited():
 	if current_button_state == button_states.HOVER:
@@ -105,6 +164,8 @@ func _on_Button_4_mouse_entered():
 	if current_button_state == button_states.NOTHOVER:
 		change_button_state(button_states.HOVER)
 	target_position = get_child(2).get_child(3).global_position
+	bullet_rotation = 180
+	
 
 func _on_Button_4_mouse_exited():
 	if current_button_state == button_states.HOVER:
