@@ -90,24 +90,7 @@ func shoot( target, dir):
 		bullet_instance.position = get_global_position();
 		bullet_instance.apply_impulse(Vector2(1,0), Vector2(500, 0).rotated(deg2rad(dir)));
 		get_tree().get_root().add_child(bullet_instance);
-		
-		
-		
-#	if (bullet_instance):
-##		bullet_instance.position = bullet_instance.position.move_toward(target, 30)
-#		print("attacking "+ str(direction)+" " + str(bullet_instance.position) + " "+ str(target));
-##		change_player_state(player_states.IDLE)
-#		test=true;
-		
-	
-#	if bullet_instance and target == bullet_instance.position:
-##		destroy() bullet_instance
-#		change_player_state(player_states.IDLE)
-#	bullet_instance.position = get_global_position();
-#	bullet_instance.apply_impulse(Vector2(), Vector2(bullet_speed, 0));
-#	var target = 
-#	var direction_to_mouse = bullet_instance.global_position
-#	print("shoot bullet "+dir)
+
 
 func change_player_state(target_state):
 	current_player_state = target_state
@@ -120,7 +103,6 @@ func card_pressed():
 	current_move_attack = false;
 
 func card_pressed_attack():
-	print("here?")
 	current_move_attack = true;
 	change_button_state(button_states.NOTHOVER)
 	

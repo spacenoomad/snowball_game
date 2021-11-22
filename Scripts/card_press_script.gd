@@ -9,7 +9,6 @@ signal player_can_move
 signal player_can_attack
 signal removed_one_card
 
-var is_attack = false;
 var is_move = false;
 
 func _ready():
@@ -31,7 +30,6 @@ func set_card_ability():
 	#each num is different move
 	if (random_int==2):
 		card_ability_text.set_text("Attack")
-		is_attack = true;
 	else:	
 		card_ability_text.set_text("make 1 move")
 		is_move = true;
