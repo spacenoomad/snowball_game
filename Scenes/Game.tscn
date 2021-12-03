@@ -1,14 +1,27 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Actors/Box.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Actors/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scripts/add_cards.gd" type="Script" id=3]
+[ext_resource path="res://Actors/Enemies.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scripts/game_controller.gd" type="Script" id=5]
+[ext_resource path="res://White-square.jpg" type="Texture" id=6]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+[sub_resource type="RectangleShape2D" id=2]
 
 [node name="Game" type="Node"]
+script = ExtResource( 5 )
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 50.3868, 49.7234 )
 scale = Vector2( 0.309532, 0.309532 )
+collision_layer = 17
+collision_mask = 17
 _speed = 20
 
 [node name="bulletSpawner" type="Position2D" parent="Player"]
@@ -19,7 +32,7 @@ scale = Vector2( 3.23068, 3.23068 )
 scale = Vector2( 1.01521, 1.01521 )
 
 [node name="Row_1" type="Node2D" parent="Board_Holder"]
-position = Vector2( -1.33635, 0.890892 )
+position = Vector2( 0, 0.891 )
 
 [node name="Box" parent="Board_Holder/Row_1" instance=ExtResource( 1 )]
 position = Vector2( 50.7239, 48.0542 )
@@ -43,7 +56,7 @@ position = Vector2( 545.724, 48.0542 )
 position = Vector2( 644.132, 48.0542 )
 
 [node name="Row_2" type="Node2D" parent="Board_Holder"]
-position = Vector2( -1.33635, 99.595 )
+position = Vector2( 0, 99.595 )
 
 [node name="Box" parent="Board_Holder/Row_2" instance=ExtResource( 1 )]
 position = Vector2( 50.7239, 48.0542 )
@@ -67,7 +80,7 @@ position = Vector2( 545.724, 48.0542 )
 position = Vector2( 644.132, 48.0542 )
 
 [node name="Row_3" type="Node2D" parent="Board_Holder"]
-position = Vector2( -1.33635, 198.074 )
+position = Vector2( 0, 198.074 )
 
 [node name="Box" parent="Board_Holder/Row_3" instance=ExtResource( 1 )]
 position = Vector2( 50.7239, 48.0542 )
@@ -91,7 +104,7 @@ position = Vector2( 545.724, 48.0542 )
 position = Vector2( 644.132, 48.0542 )
 
 [node name="Row_4" type="Node2D" parent="Board_Holder"]
-position = Vector2( -1.33635, 296.553 )
+position = Vector2( 0, 296.553 )
 
 [node name="Box" parent="Board_Holder/Row_4" instance=ExtResource( 1 )]
 position = Vector2( 50.7239, 48.0542 )
@@ -115,7 +128,7 @@ position = Vector2( 545.724, 48.0542 )
 position = Vector2( 644.132, 48.0542 )
 
 [node name="Row_5" type="Node2D" parent="Board_Holder"]
-position = Vector2( -1.33635, 394.808 )
+position = Vector2( 0, 394.808 )
 
 [node name="Box" parent="Board_Holder/Row_5" instance=ExtResource( 1 )]
 position = Vector2( 50.7239, 48.0542 )
@@ -139,7 +152,7 @@ position = Vector2( 545.724, 48.0542 )
 position = Vector2( 644.132, 48.0542 )
 
 [node name="Row_6" type="Node2D" parent="Board_Holder"]
-position = Vector2( -0.629242, 493.287 )
+position = Vector2( 0, 493.287 )
 
 [node name="Box" parent="Board_Holder/Row_6" instance=ExtResource( 1 )]
 position = Vector2( 50.7239, 48.0542 )
@@ -161,6 +174,57 @@ position = Vector2( 545.724, 48.0542 )
 
 [node name="Box7" parent="Board_Holder/Row_6" instance=ExtResource( 1 )]
 position = Vector2( 644.132, 48.0542 )
+
+[node name="Outer_Borders" type="Node2D" parent="Board_Holder"]
+
+[node name="Area2D" type="Area2D" parent="Board_Holder/Outer_Borders"]
+position = Vector2( -18.7153, 291.565 )
+collision_layer = 8
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Board_Holder/Outer_Borders/Area2D"]
+scale = Vector2( 1.93134, 31.876 )
+shape = SubResource( 1 )
+
+[node name="Area2D4" type="Area2D" parent="Board_Holder/Outer_Borders"]
+position = Vector2( 711.183, 286.64 )
+collision_layer = 8
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Board_Holder/Outer_Borders/Area2D4"]
+scale = Vector2( 1.93134, 31.876 )
+shape = SubResource( 1 )
+
+[node name="Area2D2" type="Area2D" parent="Board_Holder/Outer_Borders"]
+position = Vector2( 349.681, -19.7003 )
+rotation = 1.5708
+collision_layer = 8
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Board_Holder/Outer_Borders/Area2D2"]
+scale = Vector2( 1.79661, 38.9007 )
+shape = SubResource( 1 )
+
+[node name="Area2D3" type="Area2D" parent="Board_Holder/Outer_Borders"]
+position = Vector2( 345.741, 607.756 )
+rotation = 1.5708
+collision_layer = 8
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Board_Holder/Outer_Borders/Area2D3"]
+scale = Vector2( 1.79661, 38.9007 )
+shape = SubResource( 1 )
+
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="Enemies" parent="Enemies" instance=ExtResource( 4 )]
+position = Vector2( 49, 348 )
+
+[node name="Enemies2" parent="Enemies" instance=ExtResource( 4 )]
+position = Vector2( 455, 49.0001 )
+
+[node name="Enemies3" parent="Enemies" instance=ExtResource( 4 )]
+position = Vector2( 554, 449 )
 
 [node name="Cards" type="Control" parent="."]
 anchor_left = 1.0
@@ -235,4 +299,20 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Win" type="Area2D" parent="."]
+position = Vector2( 654, 550 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Win"]
+scale = Vector2( 2.43776, 2.53011 )
+shape = SubResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="Win"]
+modulate = Color( 0, 1, 0.156863, 1 )
+scale = Vector2( 0.0955272, 0.0955272 )
+texture = ExtResource( 6 )
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="change_game_state" from="Cards/Cards_Holder" to="." method="_on_Cards_Holder_change_game_state"]
+[connection signal="button_down" from="Cards/Button" to="." method="_on_Button_button_down"]
 [connection signal="button_down" from="Cards/Button" to="Cards/Cards_Holder" method="_on_Button_button_down"]
+[connection signal="body_entered" from="Win" to="." method="_on_Win_body_entered"]

@@ -9,6 +9,7 @@ var has_attacked = false;
 var current_move_attack=false;
 onready var bullet_spawn_point = $bulletSpawner
 
+
 enum button_states {
 	HIDDEN,
 	NOTHOVER,

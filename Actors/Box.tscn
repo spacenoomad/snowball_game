@@ -6,6 +6,8 @@
 
 [node name="Box" type="StaticBody2D"]
 scale = Vector2( 4.94339, 4.94339 )
+collision_layer = 4
+collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )

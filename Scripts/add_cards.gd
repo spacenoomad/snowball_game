@@ -4,10 +4,13 @@ onready var card = preload("res://Actors/Card.tscn")
 var amount_of_cards = 0
 #var moves_left = 10;
 
+signal change_game_state()
+
 enum drawing_cards_states {
 	NOTDRAWABLE
 	DRAWABLE
 }
+
 
 var drawing_cards_state = drawing_cards_states.DRAWABLE
 
@@ -37,6 +40,7 @@ func _on_Button_button_down():
 		drawing_cards_states.DRAWABLE:
 			generate_cards()
 			change_drawing_cards_state(drawing_cards_states.NOTDRAWABLE)
+			emit_signal("change_game_state")
 
 func change_drawing_cards_state(target_state):
 	drawing_cards_state = target_state
