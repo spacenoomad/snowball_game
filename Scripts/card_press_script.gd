@@ -4,6 +4,7 @@ onready var player = get_node("/root/Game/Player")
 onready var cards_holder = get_node("/root/Game/Cards/Cards_Holder")
 onready var card_ability_text = $Label
 onready var card_ability_text2 = get_node("/root/Game/Card/Label")
+onready var click_sfx = $ClickCard
 
 signal player_can_move
 signal player_can_attack
@@ -32,7 +33,9 @@ func _on_Card_button_down():
 			else:
 				emit_signal("player_can_attack")
 				
+#			click_sfx.play();
 			emit_signal("removed_one_card")
+			
 			change_game_state(game_states.GAME_TURN)
 			queue_free()
 		game_states.GAME_TURN:

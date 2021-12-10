@@ -8,7 +8,8 @@ var moves_left =10
 var has_attacked = false;
 var current_move_attack=false;
 onready var bullet_spawn_point = $bulletSpawner
-
+onready var shoot_sfx = $ShootSFX
+onready var move_sfx = $MoveSFX
 
 enum button_states {
 	HIDDEN,
@@ -72,6 +73,7 @@ func match_button_states():
 				
 
 func move_towards_target(local_target_position):
+	move_sfx.play();
 	position = position.move_toward(local_target_position, _speed)
 	if local_target_position == position:
 		change_player_state(player_states.IDLE)
@@ -81,6 +83,7 @@ func move_towards_target(local_target_position):
 var bullet_instance;
 func attack_towards_target(local_target_position, bullet_rotation):
 	shoot(local_target_position, bullet_rotation);
+	shoot_sfx.play();
 #	shoot in direction
 	change_player_state(player_states.IDLE)
 

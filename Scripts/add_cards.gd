@@ -3,6 +3,7 @@ extends HBoxContainer
 onready var card = preload("res://Actors/Card.tscn")
 var amount_of_cards = 0
 #var moves_left = 10;
+onready var draw_cards_sfx = $DrawSFX
 
 signal change_game_state()
 
@@ -41,6 +42,7 @@ func _on_Button_button_down():
 			generate_cards()
 			change_drawing_cards_state(drawing_cards_states.NOTDRAWABLE)
 			emit_signal("change_game_state")
+			$DrawSFX.play();
 
 func change_drawing_cards_state(target_state):
 	drawing_cards_state = target_state

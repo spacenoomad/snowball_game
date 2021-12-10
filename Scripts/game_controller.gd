@@ -2,7 +2,7 @@ extends Node
 
 onready var cards_holder = $Cards/Cards_Holder
 onready var enemy_holder = $Enemies
-
+onready var background_track = $BGM
 signal change_card_holder_state
 signal change_enemy_state
 
@@ -16,6 +16,11 @@ var current_game_state
 
 func _ready():
 	pass
+	
+#func _process(_delta):
+#	if (background_track.playing==false):
+#			background_track.play();
+#	pass
 
 func change_game_state(target_state):
 	match target_state:

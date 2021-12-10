@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Actors/Box.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Actors/Player.tscn" type="PackedScene" id=2]
@@ -6,6 +6,10 @@
 [ext_resource path="res://Actors/Enemies.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scripts/game_controller.gd" type="Script" id=5]
 [ext_resource path="res://White-square.jpg" type="Texture" id=6]
+[ext_resource path="res://Sounds/draw_btn_sfx.wav" type="AudioStream" id=7]
+[ext_resource path="res://Sounds/laser.wav" type="AudioStream" id=8]
+[ext_resource path="res://Sounds/movement_sfx.wav" type="AudioStream" id=9]
+[ext_resource path="res://Sounds/snowball_music.wav" type="AudioStream" id=10]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -13,6 +17,11 @@
 
 [node name="Game" type="Node"]
 script = ExtResource( 5 )
+
+[node name="BGM" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 10 )
+volume_db = -3.662
+autoplay = true
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
@@ -27,6 +36,12 @@ _speed = 20
 [node name="bulletSpawner" type="Position2D" parent="Player"]
 position = Vector2( 0.216446, 2.35963 )
 scale = Vector2( 3.23068, 3.23068 )
+
+[node name="ShootSFX" type="AudioStreamPlayer2D" parent="Player"]
+stream = ExtResource( 8 )
+
+[node name="MoveSFX" type="AudioStreamPlayer2D" parent="Player"]
+stream = ExtResource( 9 )
 
 [node name="Board_Holder" type="Node2D" parent="."]
 scale = Vector2( 1.01521, 1.01521 )
@@ -257,6 +272,11 @@ script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="DrawSFX" type="AudioStreamPlayer2D" parent="Cards/Cards_Holder"]
+position = Vector2( -3503.68, -557.29 )
+scale = Vector2( 4.94071, 3.2735 )
+stream = ExtResource( 7 )
 
 [node name="Button" type="Button" parent="Cards"]
 margin_left = -200.82

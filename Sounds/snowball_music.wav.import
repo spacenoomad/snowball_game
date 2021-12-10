@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/snowball_music.wav-e3c73399eee2db46416a89fb59f80356.sample"
+
+[deps]
+
+source_file="res://Sounds/snowball_music.wav"
+dest_files=[ "res://.import/snowball_music.wav-e3c73399eee2db46416a89fb59f80356.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
