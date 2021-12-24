@@ -81,4 +81,4 @@ func _on_Sensor_4_body_exited(body):
 		go_up = null
 
 func _on_Area2D_body_entered(body):
-	print('change to lose screen')
+	get_tree().change_scene("res://Scenes/LoseScreen.tscn")

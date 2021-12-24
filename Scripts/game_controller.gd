@@ -50,4 +50,4 @@ func _on_Timer_timeout():
 
 
 func _on_Win_body_entered(body):
-	print('change to win screen')
+	get_tree().change_scene("res://Scenes/WinScreen.tscn")
