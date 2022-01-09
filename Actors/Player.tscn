@@ -134,7 +134,6 @@ texture = ExtResource( 1 )
 position = Vector2( 1.50342, 17.3989 )
 scale = Vector2( 2, 2 )
 frames = SubResource( 5 )
-frame = 1
 playing = true
 
 [connection signal="mouse_entered" from="Buttons/Button_1" to="." method="_on_Button_1_mouse_entered"]

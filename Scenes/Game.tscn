@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://Actors/Box.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Actors/Player.tscn" type="PackedScene" id=2]
@@ -14,8 +14,26 @@
 [ext_resource path="res://Font/Steamed DEMO.otf" type="DynamicFontData" id=12]
 [ext_resource path="res://Font/bubblegum/Bubblegum.ttf" type="DynamicFontData" id=13]
 [ext_resource path="res://Graphics/gift2.png" type="Texture" id=14]
+[ext_resource path="res://Graphics/tree.png" type="Texture" id=15]
 
 [sub_resource type="RectangleShape2D" id=1]
+
+[sub_resource type="Animation" id=10]
+resource_name = "tree-anim"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("tree:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2, 4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ -6.7, 0.0, -6.7 ]
+}
 
 [sub_resource type="DynamicFont" id=5]
 size = 20
@@ -32,13 +50,48 @@ animations = [ {
 "speed": 5.0
 } ]
 
+[sub_resource type="Animation" id=8]
+resource_name = "gift-anim"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 23.2, 3.2, 23.2 ]
+}
+
+[sub_resource type="DynamicFont" id=6]
+size = 27
+use_filter = true
+font_data = ExtResource( 13 )
+
 [sub_resource type="DynamicFont" id=3]
 size = 24
 use_filter = true
 font_data = ExtResource( 12 )
 
-[sub_resource type="DynamicFont" id=6]
-font_data = ExtResource( 13 )
+[sub_resource type="Animation" id=9]
+resource_name = "sign post"
+length = 3.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.5, 3.1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 19.461 ), Vector2( 0, 0 ) ]
+}
 
 [node name="Game" type="Node"]
 script = ExtResource( 5 )
@@ -280,7 +333,32 @@ __meta__ = {
 margin_right = 40.0
 margin_bottom = 40.0
 rect_scale = Vector2( -8.04535, 15.1688 )
-color = Color( 0.2, 0.235294, 0.623529, 1 )
+color = Color( 0.192157, 0.313726, 0.780392, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tree" type="Node2D" parent="Cards"]
+position = Vector2( -1028.76, -103.181 )
+
+[node name="tree" type="Sprite" parent="Cards/Tree"]
+position = Vector2( 889.637, 443.615 )
+rotation = -0.0526217
+scale = Vector2( 1.185, 1.469 )
+texture = ExtResource( 15 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Cards/Tree"]
+autoplay = "tree-anim"
+anims/tree-anim = SubResource( 10 )
+
+[node name="Button" type="Button" parent="Cards"]
+margin_left = -210.697
+margin_top = 332.217
+margin_right = -152.697
+margin_bottom = 365.217
+rect_scale = Vector2( 1.81276, 1.3877 )
+custom_fonts/font = SubResource( 5 )
+text = "Draw"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -303,26 +381,8 @@ position = Vector2( -3503.68, -557.29 )
 scale = Vector2( 4.94071, 3.2735 )
 stream = ExtResource( 7 )
 
-[node name="Button" type="Button" parent="Cards"]
-margin_left = -213.872
-margin_top = 307.386
-margin_right = -155.872
-margin_bottom = 340.386
-rect_scale = Vector2( 1.81276, 1.3877 )
-custom_fonts/font = SubResource( 5 )
-text = "Draw"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="Win" type="Area2D" parent="."]
 position = Vector2( 654, 550 )
-
-[node name="gift2" type="Sprite" parent="Win"]
-visible = false
-position = Vector2( -0.529175, -3.76715 )
-scale = Vector2( 0.644, 0.644 )
-texture = ExtResource( 14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Win"]
 scale = Vector2( 2.43776, 2.53011 )
@@ -334,10 +394,20 @@ modulate = Color( 0, 1, 0.156863, 1 )
 scale = Vector2( 0.0955272, 0.0955272 )
 texture = ExtResource( 6 )
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="Win"]
+[node name="gift" type="Position2D" parent="Win"]
+rotation = 0.0757218
+
+[node name="gift" type="AnimatedSprite" parent="Win/gift"]
+rotation = -0.319395
+scale = Vector2( 0.582, 0.582 )
 frames = SubResource( 7 )
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Win/gift"]
+autoplay = "gift-anim"
+anims/gift-anim = SubResource( 8 )
+
 [node name="Sign" type="Node2D" parent="."]
+position = Vector2( 0, 8.16005 )
 
 [node name="sign2" type="Sprite" parent="Sign"]
 modulate = Color( 0, 0, 0, 0.403922 )
@@ -349,6 +419,24 @@ texture = ExtResource( 11 )
 position = Vector2( 878.448, 511.456 )
 scale = Vector2( 0.973, 1.132 )
 texture = ExtResource( 11 )
+
+[node name="MovesCountText" type="Label" parent="Sign"]
+modulate = Color( 0.215686, 0.556863, 0.521569, 1 )
+anchor_top = -1.01725e-07
+anchor_bottom = -1.01725e-07
+margin_left = 872.114
+margin_top = 432.655
+margin_right = 983.114
+margin_bottom = 473.655
+rect_scale = Vector2( 1.32, 1.36 )
+custom_fonts/font = SubResource( 6 )
+text = "10"
+align = 1
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Label" type="Label" parent="Sign"]
 modulate = Color( 0.0352941, 0.0784314, 0.32549, 1 )
@@ -366,26 +454,16 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="MovesCountText" type="Label" parent="."]
-modulate = Color( 0.266667, 0.631373, 0.517647, 1 )
-anchor_top = -1.01725e-07
-anchor_bottom = -1.01725e-07
-margin_left = 870.309
-margin_top = 434.69
-margin_right = 981.309
-margin_bottom = 475.69
-rect_scale = Vector2( 1.32, 1.36 )
-custom_fonts/font = SubResource( 6 )
-text = "10"
-align = 1
-valign = 1
-uppercase = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sign"]
+autoplay = "sign post"
+"anims/sign post" = SubResource( 9 )
+
+[node name="snow pls try this lol im stuck" type="Particles2D" parent="."]
+position = Vector2( 244.736, -62.5083 )
+lifetime = 0.01
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
-[connection signal="change_game_state" from="Cards/Cards_Holder" to="." method="_on_Cards_Holder_change_game_state"]
 [connection signal="button_down" from="Cards/Button" to="." method="_on_Button_button_down"]
 [connection signal="button_down" from="Cards/Button" to="Cards/Cards_Holder" method="_on_Button_button_down"]
+[connection signal="change_game_state" from="Cards/Cards_Holder" to="." method="_on_Cards_Holder_change_game_state"]
 [connection signal="body_entered" from="Win" to="." method="_on_Win_body_entered"]

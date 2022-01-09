@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
 var bullet = preload("res://Actors/Bullet.tscn")
-onready var counter = get_node("/root/Game/MovesCountText")
+onready var counter = get_node("/root/Game/Sign/MovesCountText")
 export var _speed = 0
 export var bullet_speed = 1000;
 var moves_left =10
