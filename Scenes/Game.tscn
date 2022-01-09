@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Actors/Box.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Actors/Player.tscn" type="PackedScene" id=2]
@@ -12,6 +12,8 @@
 [ext_resource path="res://Sounds/snowball_music.wav" type="AudioStream" id=10]
 [ext_resource path="res://Graphics/sign.png" type="Texture" id=11]
 [ext_resource path="res://Font/Steamed DEMO.otf" type="DynamicFontData" id=12]
+[ext_resource path="res://Font/bubblegum/Bubblegum.ttf" type="DynamicFontData" id=13]
+[ext_resource path="res://Graphics/gift2.png" type="Texture" id=14]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -22,10 +24,21 @@ font_data = ExtResource( 12 )
 
 [sub_resource type="RectangleShape2D" id=2]
 
+[sub_resource type="SpriteFrames" id=7]
+animations = [ {
+"frames": [ ExtResource( 14 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
 [sub_resource type="DynamicFont" id=3]
 size = 24
 use_filter = true
 font_data = ExtResource( 12 )
+
+[sub_resource type="DynamicFont" id=6]
+font_data = ExtResource( 13 )
 
 [node name="Game" type="Node"]
 script = ExtResource( 5 )
@@ -39,7 +52,7 @@ autoplay = true
 one_shot = true
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
-position = Vector2( 50.3868, 49.7234 )
+position = Vector2( 51.576, 49.7234 )
 collision_layer = 17
 collision_mask = 17
 _speed = 20
@@ -305,14 +318,24 @@ __meta__ = {
 [node name="Win" type="Area2D" parent="."]
 position = Vector2( 654, 550 )
 
+[node name="gift2" type="Sprite" parent="Win"]
+visible = false
+position = Vector2( -0.529175, -3.76715 )
+scale = Vector2( 0.644, 0.644 )
+texture = ExtResource( 14 )
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Win"]
 scale = Vector2( 2.43776, 2.53011 )
 shape = SubResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="Win"]
+visible = false
 modulate = Color( 0, 1, 0.156863, 1 )
 scale = Vector2( 0.0955272, 0.0955272 )
 texture = ExtResource( 6 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Win"]
+frames = SubResource( 7 )
 
 [node name="Sign" type="Node2D" parent="."]
 
@@ -347,11 +370,12 @@ __meta__ = {
 modulate = Color( 0.266667, 0.631373, 0.517647, 1 )
 anchor_top = -1.01725e-07
 anchor_bottom = -1.01725e-07
-margin_left = 873.488
-margin_top = 428.333
-margin_right = 984.488
-margin_bottom = 469.333
+margin_left = 870.309
+margin_top = 434.69
+margin_right = 981.309
+margin_bottom = 475.69
 rect_scale = Vector2( 1.32, 1.36 )
+custom_fonts/font = SubResource( 6 )
 text = "10"
 align = 1
 valign = 1

@@ -53,7 +53,6 @@ collision_layer = 4
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Buttons/Button_1"]
-visible = false
 shape = SubResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="Buttons/Button_1"]
@@ -75,7 +74,6 @@ collision_layer = 4
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Buttons/Button_2"]
-visible = false
 shape = SubResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="Buttons/Button_2"]
@@ -97,7 +95,6 @@ collision_layer = 4
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Buttons/Button_3"]
-visible = false
 shape = SubResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="Buttons/Button_3"]
@@ -118,7 +115,6 @@ collision_layer = 4
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Buttons/Button_4"]
-visible = false
 shape = SubResource( 2 )
 
 [node name="arrow3" type="Sprite" parent="Buttons/Button_4"]
