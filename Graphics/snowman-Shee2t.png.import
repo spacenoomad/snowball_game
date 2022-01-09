@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/x.png-3348759b97191df77e4508fc5eeab1e9.stex"
+path="res://.import/snowman-Shee2t.png-fb3369ecc896469ab7a2d4c748b9fc0e.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://x.png"
-dest_files=[ "res://.import/x.png-3348759b97191df77e4508fc5eeab1e9.stex" ]
+source_file="res://Graphics/snowman-Shee2t.png"
+dest_files=[ "res://.import/snowman-Shee2t.png-fb3369ecc896469ab7a2d4c748b9fc0e.stex" ]
 
 [params]
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Actors/Box.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Actors/Player.tscn" type="PackedScene" id=2]
@@ -10,17 +10,29 @@
 [ext_resource path="res://Sounds/laser.wav" type="AudioStream" id=8]
 [ext_resource path="res://Sounds/movement_sfx.wav" type="AudioStream" id=9]
 [ext_resource path="res://Sounds/snowball_music.wav" type="AudioStream" id=10]
+[ext_resource path="res://Graphics/sign.png" type="Texture" id=11]
+[ext_resource path="res://Font/Steamed DEMO.otf" type="DynamicFontData" id=12]
 
 [sub_resource type="RectangleShape2D" id=1]
 
+[sub_resource type="DynamicFont" id=5]
+size = 20
+use_filter = true
+font_data = ExtResource( 12 )
+
 [sub_resource type="RectangleShape2D" id=2]
+
+[sub_resource type="DynamicFont" id=3]
+size = 24
+use_filter = true
+font_data = ExtResource( 12 )
 
 [node name="Game" type="Node"]
 script = ExtResource( 5 )
 
-[node name="BGM" type="AudioStreamPlayer2D" parent="."]
+[node name="BGM" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 10 )
-volume_db = -3.662
+volume_db = -18.687
 autoplay = true
 
 [node name="Timer" type="Timer" parent="."]
@@ -28,13 +40,12 @@ one_shot = true
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 50.3868, 49.7234 )
-scale = Vector2( 0.309532, 0.309532 )
 collision_layer = 17
 collision_mask = 17
 _speed = 20
 
 [node name="bulletSpawner" type="Position2D" parent="Player"]
-position = Vector2( 0.216446, 2.35963 )
+position = Vector2( 3.39105, 2.35963 )
 scale = Vector2( 3.23068, 3.23068 )
 
 [node name="ShootSFX" type="AudioStreamPlayer2D" parent="Player"]
@@ -51,6 +62,7 @@ position = Vector2( 0, 0.891 )
 
 [node name="Box" parent="Board_Holder/Row_1" instance=ExtResource( 1 )]
 position = Vector2( 50.7239, 48.0542 )
+scale = Vector2( 4.943, 4.943 )
 
 [node name="Box2" parent="Board_Holder/Row_1" instance=ExtResource( 1 )]
 position = Vector2( 149.724, 48.0542 )
@@ -255,16 +267,16 @@ __meta__ = {
 margin_right = 40.0
 margin_bottom = 40.0
 rect_scale = Vector2( -8.04535, 15.1688 )
-color = Color( 0, 0, 0, 1 )
+color = Color( 0.2, 0.235294, 0.623529, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Cards_Holder" type="HBoxContainer" parent="Cards"]
 margin_left = -314.855
-margin_top = 170.243
+margin_top = 110.175
 margin_right = 1193.15
-margin_bottom = 670.243
+margin_bottom = 610.175
 rect_scale = Vector2( 0.2024, 0.305483 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -279,42 +291,13 @@ scale = Vector2( 4.94071, 3.2735 )
 stream = ExtResource( 7 )
 
 [node name="Button" type="Button" parent="Cards"]
-margin_left = -200.82
-margin_top = 374.574
-margin_right = -146.82
-margin_bottom = 394.574
+margin_left = -213.872
+margin_top = 307.386
+margin_right = -155.872
+margin_bottom = 340.386
 rect_scale = Vector2( 1.81276, 1.3877 )
+custom_fonts/font = SubResource( 5 )
 text = "Draw"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Label" type="Label" parent="."]
-margin_left = 711.664
-margin_top = 532.786
-margin_right = 822.664
-margin_bottom = 573.786
-rect_scale = Vector2( 1.32, 1.36 )
-text = "Lifespan left:"
-align = 1
-valign = 1
-uppercase = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="MovesCountText" type="Label" parent="."]
-anchor_top = -1.01725e-07
-anchor_bottom = -1.01725e-07
-margin_left = 794.573
-margin_top = 531.726
-margin_right = 905.573
-margin_bottom = 572.726
-rect_scale = Vector2( 1.32, 1.36 )
-text = "10"
-align = 1
-valign = 1
-uppercase = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -330,6 +313,52 @@ shape = SubResource( 2 )
 modulate = Color( 0, 1, 0.156863, 1 )
 scale = Vector2( 0.0955272, 0.0955272 )
 texture = ExtResource( 6 )
+
+[node name="Sign" type="Node2D" parent="."]
+
+[node name="sign2" type="Sprite" parent="Sign"]
+modulate = Color( 0, 0, 0, 0.403922 )
+position = Vector2( 864.997, 506.836 )
+scale = Vector2( 0.973, 1.132 )
+texture = ExtResource( 11 )
+
+[node name="sign" type="Sprite" parent="Sign"]
+position = Vector2( 878.448, 511.456 )
+scale = Vector2( 0.973, 1.132 )
+texture = ExtResource( 11 )
+
+[node name="Label" type="Label" parent="Sign"]
+modulate = Color( 0.0352941, 0.0784314, 0.32549, 1 )
+margin_left = 766.729
+margin_top = 428.006
+margin_right = 884.729
+margin_bottom = 469.006
+rect_scale = Vector2( 1.32, 1.36 )
+custom_fonts/font = SubResource( 3 )
+text = "Moves left:"
+align = 1
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MovesCountText" type="Label" parent="."]
+modulate = Color( 0.266667, 0.631373, 0.517647, 1 )
+anchor_top = -1.01725e-07
+anchor_bottom = -1.01725e-07
+margin_left = 873.488
+margin_top = 428.333
+margin_right = 984.488
+margin_bottom = 469.333
+rect_scale = Vector2( 1.32, 1.36 )
+text = "10"
+align = 1
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="change_game_state" from="Cards/Cards_Holder" to="." method="_on_Cards_Holder_change_game_state"]
